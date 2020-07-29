@@ -7,21 +7,24 @@
     <div class="mainBuilder">
       <div class="detailsPart">
         <ul>
-          <li>Name</li>
-          <li>Neck</li>
-          <li>Body</li>
+          <li>Neck<br/>
+            <span class="productTitle">{{ availableParts.necks[selectedNeckIndex].title }}</span>
+          </li>
+          <li>Body<br/>
+            <span class="productTitle">{{ availableParts.bodies[selectedBodyIndex].title }}</span>
+            </li>
         </ul>
       </div>
       <div class="guitarPart">
           <div class="necPart">
-            <img :src="availableParts.necks[selectedNeckIndex].src" alt="neck-exp image">
+            <img :src="availableParts.necks[selectedNeckIndex].src" alt="neck image">
             <button @click="selectPreviousNeck()" class="prev-selector">&#9668;</button>
             <button @click="selectNextNeck()" class="next-selector">&#9658;</button>
           </div>
           <div class="bodyPart">
-            <img :src="availableParts.bodies[0].src" alt="body-exp image">
-            <button class="prev-selector">&#9668;</button>
-            <button class="next-selector">&#9658;</button>
+            <img :src="availableParts.bodies[selectedBodyIndex].src" alt="body image">
+            <button @click="selectPreviousBody()" class="prev-selector">&#9668;</button>
+            <button @click="selectNextBody()" class="next-selector">&#9658;</button>
           </div>
       </div>
     </div>
@@ -47,6 +50,7 @@ export default {
     return {
       availableParts,
       selectedNeckIndex: 0,
+      selectedBodyIndex: 0,
     };
   },
   methods: {
@@ -58,6 +62,16 @@ export default {
     selectPreviousNeck() {
       this.selectedNeckIndex = getPreviousValidIndex(
         this.selectedNeckIndex, availableParts.necks.length,
+      );
+    },
+    selectNextBody() {
+      this.selectedBodyIndex = getNextValidIndex(
+        this.selectedBodyIndex, availableParts.bodies.length,
+      );
+    },
+    selectPreviousBody() {
+      this.selectedBodyIndex = getPreviousValidIndex(
+        this.selectedBodyIndex, availableParts.bodies.length,
       );
     },
   },
@@ -100,6 +114,8 @@ export default {
         position: relative;
     }
     .necPart img {
+        position: relative;
+        z-index: 1;
         width:40%;
     }
     .bodyPart {
@@ -107,8 +123,8 @@ export default {
     }
     .bodyPart img {
         width:80%;
-        margin-left:-19px;
-        margin-top:-3px;
+        margin-left:-16px;
+        margin-top: 2px;
     }
     .prev-selector {
         position: absolute;
@@ -117,6 +133,7 @@ export default {
         z-index: 1;
         top: 80px;
         left: 0;
+        cursor: pointer;
     }
     .next-selector {
         position: absolute;
@@ -125,6 +142,7 @@ export default {
         z-index: 1;
         top: 80px;
         right: 0;
+        cursor: pointer;
     }
 
 </style>
