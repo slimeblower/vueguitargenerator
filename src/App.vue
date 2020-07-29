@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="logo">
-      <img alt="neck logo" class="neckLogo" src="./assets/images/nec-exp.png">
-      <img alt="body logo" class="bodyLogo" src="./assets/images/bod-expl.png">
+      <img alt="neck logo" class="neckLogo" src="./data/builderImages/nec-exp.png">
+      <img alt="body logo" class="bodyLogo" src="./data/builderImages/bod-exp.png">
     </div>
     <!-- <HelloWorld msg="Guitar configurator !"/> -->
     <GuitarBuilder />

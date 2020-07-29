@@ -7,19 +7,19 @@
     <div class="mainBuilder">
       <div class="detailsPart">
         <ul>
-          <li>Name :</li>
-          <li>Neck :</li>
+          <li>Name</li>
+          <li>Neck</li>
           <li>Body</li>
         </ul>
       </div>
       <div class="guitarPart">
           <div class="necPart">
-            <img src="../assets/images/nec-exp.png" alt="neck-exp image">
-            <button class="prev-selector">&#9668;</button>
-            <button class="next-selector">&#9658;</button>
+            <img :src="availableParts.necks[selectedNeckIndex].src" alt="neck-exp image">
+            <button @click="selectPreviousNeck()" class="prev-selector">&#9668;</button>
+            <button @click="selectNextNeck()" class="next-selector">&#9658;</button>
           </div>
           <div class="bodyPart">
-            <img src="../assets/images/bod-expl.png" alt="body-exp image">
+            <img :src="availableParts.bodies[0].src" alt="body-exp image">
             <button class="prev-selector">&#9668;</button>
             <button class="next-selector">&#9658;</button>
           </div>
@@ -29,8 +29,38 @@
 </template>
 
 <script>
+import availableParts from '../data/parts';
+
+function getPreviousValidIndex(index, length) {
+  const decrementIndex = index - 1;
+  return decrementIndex < 0 ? length - 1 : decrementIndex;
+}
+
+function getNextValidIndex(index, length) {
+  const incrementedIndex = index + 1;
+  return incrementedIndex > length - 1 ? 0 : incrementedIndex;
+}
+
 export default {
   name: 'GuitarBuilder',
+  data() {
+    return {
+      availableParts,
+      selectedNeckIndex: 0,
+    };
+  },
+  methods: {
+    selectNextNeck() {
+      this.selectedNeckIndex = getNextValidIndex(
+        this.selectedNeckIndex, availableParts.necks.length,
+      );
+    },
+    selectPreviousNeck() {
+      this.selectedNeckIndex = getPreviousValidIndex(
+        this.selectedNeckIndex, availableParts.necks.length,
+      );
+    },
+  },
 };
 </script>
 
@@ -46,7 +76,8 @@ export default {
         display: flex;
         justify-content: center;
         padding: 0 10px;
-        margin-top: 40px;
+        margin: 40px auto 0;
+        width: 320px;
     }
     .detailsPart {
         width: 35%;
@@ -81,11 +112,17 @@ export default {
     }
     .prev-selector {
         position: absolute;
+        width: 25px;
+        height:25px;
+        z-index: 1;
         top: 80px;
         left: 0;
     }
     .next-selector {
         position: absolute;
+        width: 25px;
+        height:25px;
+        z-index: 1;
         top: 80px;
         right: 0;
     }
