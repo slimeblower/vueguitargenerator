@@ -1,6 +1,6 @@
 # guitar-side-project
 
-This an exercice on Vuejs.
+This is an exercice on Vuejs.
 
 ## Project setup
 ```
