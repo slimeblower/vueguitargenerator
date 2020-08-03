@@ -4,20 +4,20 @@
       <img alt="neck logo" class="neckLogo" src="./data/builderImages/nec-exp.png">
       <img alt="body logo" class="bodyLogo" src="./data/builderImages/bod-exp.png">
     </div>
-    <!-- <HelloWorld msg="Guitar configurator !"/> -->
     <GuitarBuilder />
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
 import GuitarBuilder from './components/GuitarBuilder.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
     GuitarBuilder,
+    Footer,
   },
 };
 </script>

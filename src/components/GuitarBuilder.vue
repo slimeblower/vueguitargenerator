@@ -8,23 +8,30 @@
       <div class="detailsPart">
         <ul>
           <li>Neck<br/>
-            <span class="productTitle">{{ availableParts.necks[selectedNeckIndex].title }}</span>
+            <p class="productTitle">{{ availableParts.necks[selectedNeckIndex].title }}</p>
+            <p class="price">{{ availableParts.necks[selectedNeckIndex].cost }} €</p>
           </li>
           <li>Body<br/>
-            <span class="productTitle">{{ availableParts.bodies[selectedBodyIndex].title }}</span>
-            </li>
+            <p class="productTitle">{{ availableParts.bodies[selectedBodyIndex].title }}</p>
+            <p class="price">{{ availableParts.bodies[selectedBodyIndex].cost }} €</p>
+          </li>
+          <li>
+            Total<br/>
+            <p class="price total">{{ availableParts.necks[selectedNeckIndex].cost +
+               availableParts.bodies[selectedBodyIndex].cost }} €</p>
+          </li>
         </ul>
       </div>
       <div class="guitarPart">
           <div class="necPart">
             <img :src="availableParts.necks[selectedNeckIndex].src" alt="neck image">
-            <button @click="selectPreviousNeck()" class="prev-selector">&#9668;</button>
-            <button @click="selectNextNeck()" class="next-selector">&#9658;</button>
+            <button @click="selectPreviousNeck()" class="prev-selector"></button>
+            <button @click="selectNextNeck()" class="next-selector"></button>
           </div>
           <div class="bodyPart">
             <img :src="availableParts.bodies[selectedBodyIndex].src" alt="body image">
-            <button @click="selectPreviousBody()" class="prev-selector">&#9668;</button>
-            <button @click="selectNextBody()" class="next-selector">&#9658;</button>
+            <button @click="selectPreviousBody()" class="prev-selector"></button>
+            <button @click="selectNextBody()" class="next-selector"></button>
           </div>
       </div>
     </div>
@@ -126,23 +133,39 @@ export default {
         margin-left:-16px;
         margin-top: 2px;
     }
-    .prev-selector {
+    button {
         position: absolute;
-        width: 25px;
-        height:25px;
-        z-index: 1;
         top: 80px;
-        left: 0;
+        width: 40px;
+        height:40px;
+        z-index: 1;
+        background-image: url(../assets/images/pick.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-color:transparent;
+        border:none;
         cursor: pointer;
     }
+    .prev-selector {
+        left: 0;
+        transform: rotate(90deg);
+    }
     .next-selector {
-        position: absolute;
-        width: 25px;
-        height:25px;
-        z-index: 1;
-        top: 80px;
         right: 0;
-        cursor: pointer;
+        transform: rotate(-90deg);
+    }
+
+    @media screen and (min-width:465px) {
+      .mainBuilder {
+        width:42%;
+      }
+      .bodyPart {
+        margin-top: -32%;
+      }
+      .bodyPart img {
+        margin-left: -9%;
+        margin-top: 0;
+      }
     }
 
 </style>
