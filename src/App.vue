@@ -33,7 +33,6 @@ body {
   background-image: url('./assets/images/backSite-mob.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  height:100vh;
 }
 #app {
   width:100%;

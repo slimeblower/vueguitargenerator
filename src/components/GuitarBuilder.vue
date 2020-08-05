@@ -24,7 +24,7 @@
       </div>
       <div class="guitarPart">
           <div class="necPart">
-            <img :src="availableParts.necks[selectedNeckIndex].src" alt="neck image">
+              <img :src="availableParts.necks[selectedNeckIndex].src" alt="neck image">
             <button @click="selectPreviousNeck()" class="prev-selector"></button>
             <button @click="selectNextNeck()" class="next-selector"></button>
           </div>
@@ -92,6 +92,7 @@ export default {
     h2 {
         font-size : 18px;
         text-transform: uppercase;
+        font-style: italic;
     }
     .mainBuilder {
         display: flex;
@@ -101,7 +102,7 @@ export default {
         width: 320px;
     }
     .detailsPart {
-        width: 35%;
+        width: 40%;
         height: 130px;
         text-align: center;
         padding: 25px 15px;
@@ -109,9 +110,10 @@ export default {
     }
     .detailsPart ul {
         list-style: none;
+        border: 5px solid #fff;
+        border-radius: 20px;
     }
     .detailsPart ul li {
-        font-size: 13px;
         padding: 5px 0;
     }
     .guitarPart {
@@ -155,9 +157,9 @@ export default {
         transform: rotate(-90deg);
     }
 
-    @media screen and (min-width:465px) {
+    @media screen and (min-width:600px) {
       .mainBuilder {
-        width:42%;
+        width:500px;
       }
       .bodyPart {
         margin-top: -32%;
